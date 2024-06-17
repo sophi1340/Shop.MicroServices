@@ -17,7 +17,7 @@ namespace Products.Infrastructure
         {
             //Order is important. Because first we have insert into Category and then use categoryId when inserting Product
             modelBuilder.ApplyConfiguration(new Category.CategoryConfiguration());
-            //modelBuilder.ApplyConfiguration(new Product.ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new Product.ProductConfiguration());
         }
     }
 }
