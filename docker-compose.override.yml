@@ -20,7 +20,7 @@ services:
           - PGADMIN_DEFAULT_PASSWORD=admin1234
         restart: always
         ports:
-          - "5070:8080"
+          - "5070:80"
         volumes:
           - pgadmin_data:/root/.pgadmin
     products.api:

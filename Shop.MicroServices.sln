@@ -13,11 +13,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Api", "src\service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Application", "src\services\products\Products.Application\Products.Application.csproj", "{5B59DB48-2122-494F-8796-5CFB3E62C79D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Domain", "src\services\products\Products.Domain\Products.Domain.csproj", "{F8F3435B-9EC2-42E5-A13C-864F9C50B30B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Domain", "src\services\products\Products.Domain\Products.Domain.csproj", "{F8F3435B-9EC2-42E5-A13C-864F9C50B30B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Infrastructure", "src\services\products\Products.Infrastructure\Products.Infrastructure.csproj", "{D653E2A2-C865-4212-9C16-458884CE4134}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Infrastructure", "src\services\products\Products.Infrastructure\Products.Infrastructure.csproj", "{D653E2A2-C865-4212-9C16-458884CE4134}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CF90A465-D911-496A-981D-D96A2B00A0C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{6DC3CDBE-AB67-4902-A4F5-94F95DDCC304}"
+	ProjectSection(SolutionItems) = preProject
+		Doc\My-Docker-Command.txt = Doc\My-Docker-Command.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
