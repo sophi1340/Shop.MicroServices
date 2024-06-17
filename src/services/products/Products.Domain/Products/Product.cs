@@ -34,7 +34,7 @@ namespace Products.Domain.Products
                 builder.Property(p => p.CreationDateTime).IsRequired().HasDefaultValue(DateTime.UtcNow);
                 builder.Property(p => p.ModificationDateTime).IsRequired().HasDefaultValue(DateTime.UtcNow);
 
-                //builder.HasData(SeedProducts());
+                builder.HasData(SeedLargeData());
             }
             private List<Product> SeedProducts()
             {
@@ -48,6 +48,17 @@ namespace Products.Domain.Products
                 }
 
                 return products ?? new();
+            }
+
+            internal List<Product> SeedLargeData()
+            {
+                var categories = new List<Product>();
+                using (StreamReader r = new StreamReader(@"SeedData/ProductSeed.json"))
+                {
+                    string json = r.ReadToEnd();
+                    categories = JsonSerializer.Deserialize<List<Product>>(json);
+                }
+                return categories;
             }
         }
     }

@@ -4,7 +4,7 @@ using Products.Domain.Products;
 
 namespace Products.Infrastructure
 {
-    internal class ProductDbContext: DbContext
+    public class ProductDbContext: DbContext
     {
         public ProductDbContext(DbContextOptions options) : base(options)
         {
