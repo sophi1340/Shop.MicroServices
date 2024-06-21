@@ -37,33 +37,33 @@ namespace Products.Domain.Categories
                 builder.Property(p => p.CreationDateTime).IsRequired().HasDefaultValue(DateTime.UtcNow);
                 builder.Property(p => p.ModificationDateTime).IsRequired().HasDefaultValue(DateTime.UtcNow);
 
-                builder.HasData(SeedLargeData());
+                builder.HasData(SeedCategories());
             }
 
-            //private List<Category> SeedCategories()
-            //{
-            //    var categories = new List<Category>();
-            //    string directoryPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-            //    string categorySeedPath = Path.Combine(directoryPath, @"SeedData/CategorySeed.json");
-            //    using (StreamReader r = new StreamReader(categorySeedPath))
-            //    {
-            //        string json = r.ReadToEnd();
-            //        categories = JsonSerializer.Deserialize<List<Category>>(json);
-            //    }
-
-            //    return categories ?? new();
-            //}
-
-            internal List<Category> SeedLargeData()
+            private List<Category> SeedCategories()
             {
                 var categories = new List<Category>();
-                using (StreamReader r = new StreamReader(@"SeedData/CategorySeed.json"))
+                string directoryPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+                string categorySeedPath = Path.Combine(directoryPath, @"SeedData/CategorySeed.json");
+                using (StreamReader r = new StreamReader(categorySeedPath))
                 {
                     string json = r.ReadToEnd();
                     categories = JsonSerializer.Deserialize<List<Category>>(json);
                 }
-                return categories;
+
+                return categories ?? new();
             }
+
+            //internal List<Category> SeedLargeData()
+            //{
+            //    var categories = new List<Category>();
+            //    using (StreamReader r = new StreamReader(@"SeedData/CategorySeed.json"))
+            //    {
+            //        string json = r.ReadToEnd();
+            //        categories = JsonSerializer.Deserialize<List<Category>>(json);
+            //    }
+            //    return categories;
+            //}
         }
     }
 }
