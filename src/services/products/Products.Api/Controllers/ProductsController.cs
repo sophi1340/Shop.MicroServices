@@ -2,7 +2,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Products.Application.Products.Commands.Create;
+using Products.Application.Products.Commands.Delete;
+using Products.Application.Products.Commands.Update;
+using Products.Application.Products.Queries.GetProductsList;
 using Products.Domain;
+using Products.Domain.Base;
 using Products.Domain.Products;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,10 +26,9 @@ namespace Products.Api.Controllers
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<PaginitionResDto<List<ProductResDto>>> Get([FromQuery]GetProductsListQuery request)
         {
-            //return _mapper.Map<List<ProductResDto>>(await _readUnitOfWork.ProductReadRepository.GetAllAsync());
-            return Ok();
+            return await _mediator.Send(request);
         }
 
         // GET api/<ProductsController>/5
@@ -44,14 +47,24 @@ namespace Products.Api.Controllers
 
         // PUT api/<ProductsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult<bool>> Put(int id, UpdateProductCommand request)
         {
+            if (id != request.Id)
+            {
+                return BadRequest("Id In Body Must Be Equal");
+            }
+
+            var res = await _mediator.Send(request);
+
+            return res;
         }
 
         // DELETE api/<ProductsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public async Task<bool> Delete(DeleteProductCommand request)
         {
+            var res = await _mediator.Send(request);
+            return res;
         }
     }
 }
