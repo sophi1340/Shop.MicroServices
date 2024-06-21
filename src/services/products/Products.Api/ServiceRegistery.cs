@@ -40,6 +40,8 @@ namespace Products.Api
         {
             builder.Services.AddValidatorsFromAssembly(Assemblies.ApplicationAssembly);
             builder.Services.AddMediatR(Assemblies.ApplicationAssembly);
+
+            //اعتبار سنجی توکار با این روش درخواست دیگه به دیتابیس نمیرسه
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 

@@ -2,6 +2,11 @@
 
 namespace Products.Application.Products.Commands.Create
 {
+    /// <summary>
+    /// اعتبار سنجی توکار به صورت IPipelineBehavior
+    /// با این روش دیگه درخواست به سمت دیتابیس نمیرسه در صوت وجود اشکال اعتبار سنجی
+    /// ولی روش جالبی نیست
+    /// </summary>
     public class AddProductCommandValidator : AbstractValidator<AddProductCommand>
     {
         public AddProductCommandValidator()
