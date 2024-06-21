@@ -7,10 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="SeedData\CategorySeed.json" />
     <None Remove="SeedData\ProductSeed.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="SeedData\CategorySeed.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SeedData\ProductSeed.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -30,12 +34,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Products.Application\Products.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="SeedData\CategorySeed.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

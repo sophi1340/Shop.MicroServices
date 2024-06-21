@@ -2,6 +2,7 @@ using Products.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceRegistery();
 builder.AddInfrastructureServices();
 
 

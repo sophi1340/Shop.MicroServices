@@ -12,6 +12,7 @@ namespace Products.Infrastructure
         {
             _context = context;
         }
+
         private ProductWriteRepository _productWriteRepository;
 
         public IProductWriteRepository ProductWriteRepository
