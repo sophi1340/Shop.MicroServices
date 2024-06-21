@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Products.Application.Products.Commands.Create;
 using Products.Domain;
 using Products.Domain.Products;
 
@@ -11,21 +13,19 @@ namespace Products.Api.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IReadUnitOfWork _readUnitOfWork;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public ProductsController(IReadUnitOfWork readUnitOfWork, IMapper mapper)
+        public ProductsController(IMediator mediator)
         {
-            _readUnitOfWork = readUnitOfWork;
-            _mapper = mapper;
+            _mediator = mediator;
         }
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public async Task<List<ProductResDto>> Get()
+        public async Task<IActionResult> Get()
         {
-            return _mapper.Map<List<ProductResDto>>(await _readUnitOfWork.ProductReadRepository.GetAllAsync());
-
+            //return _mapper.Map<List<ProductResDto>>(await _readUnitOfWork.ProductReadRepository.GetAllAsync());
+            return Ok();
         }
 
         // GET api/<ProductsController>/5
@@ -37,8 +37,9 @@ namespace Products.Api.Controllers
 
         // POST api/<ProductsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ProductResDto> Post(AddProductCommand request)
         {
+            return await _mediator.Send(request);
         }
 
         // PUT api/<ProductsController>/5
