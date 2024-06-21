@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Products.Domain;
 using Products.Domain.Products;
 
@@ -11,17 +12,20 @@ namespace Products.Api.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IReadUnitOfWork _readUnitOfWork;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IReadUnitOfWork readUnitOfWork)
+        public ProductsController(IReadUnitOfWork readUnitOfWork, IMapper mapper)
         {
             _readUnitOfWork = readUnitOfWork;
+            _mapper = mapper;
         }
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public async Task<List<Product>> Get()
+        public async Task<List<ProductResDto>> Get()
         {
-            return await _readUnitOfWork.ProductReadRepository.GetAllAsync();
+            return _mapper.Map<List<ProductResDto>>(await _readUnitOfWork.ProductReadRepository.GetAllAsync());
+
         }
 
         // GET api/<ProductsController>/5
