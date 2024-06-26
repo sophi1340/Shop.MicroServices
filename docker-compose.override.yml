@@ -17,7 +17,7 @@ services:
         container_name: basketdb
         restart: always
         ports:
-          - "6379:6379"
+          - "5437:5438"
     pgadmin:
         container_name: pgadmin
         environment:
