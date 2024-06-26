@@ -13,11 +13,25 @@ services:
           - "5435:5432"
         volumes:
           - postgres_data:/var/lib/postgresql/data/
+
+    discountdb:
+        container_name: discountdb
+        environment:
+          - ACCEPT_EULA=Y
+          - SA_PASSWORD=Admin@1234
+          - MSSQL_PID=Express
+        restart: always
+        ports:
+          - "5430:1433"
+        volumes:
+          - discount_data:/var/lib/mssqlserver/data/
+
     basketdb:
         container_name: basketdb
         restart: always
         ports:
           - "5437:5438"
+
     pgadmin:
         container_name: pgadmin
         environment:
@@ -28,6 +42,7 @@ services:
           - "5070:80"
         volumes:
           - pgadmin_data:/root/.pgadmin
+
     products.api:
       environment:
         - ASPNETCORE_ENVIRONMENT=Development
@@ -43,4 +58,12 @@ services:
         - ASPNETCORE_HTTP_PORTS=8080
       ports:
          - "10001:8080"
+
+
+    discount.api:
+      environment:
+       - ASPNETCORE_ENVIRONMENT=Development
+       - ASPNETCORE_HTTP_PORTS=8080
+      ports:
+       - "10002:8080"
 

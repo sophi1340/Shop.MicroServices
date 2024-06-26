@@ -1,24 +1,40 @@
 version: '3.4'
 
 services:
+
   productdb:
     image: postgres
+
+  discountdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+
   basketdb:
     image: redis:alpine
+
   pgadmin:
     image: dpage/pgadmin4
+
   products.api:
     image: ${DOCKER_REGISTRY-}productsapi
     build:
       context: .
       dockerfile: src/services/products/Products.Api/Dockerfile
+
   basket.api:
     image: ${DOCKER_REGISTRY-}basketapi
     build:
       context: .
       dockerfile: src/services/Basket.API/Dockerfile
 
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discountapi
+    build:
+      context: .
+      dockerfile: src/services/DisCounts/Discount.Api/Dockerfile
+
 volumes:
     postgres_data:
     pgadmin_data:
+    discount_data:
+
 
