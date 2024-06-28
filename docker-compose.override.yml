@@ -19,7 +19,6 @@ services:
         environment:
           - ACCEPT_EULA=Y
           - SA_PASSWORD=Admin@1234
-          - MSSQL_PID=Express
         restart: always
         ports:
           - "5430:1433"

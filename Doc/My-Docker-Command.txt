@@ -15,3 +15,15 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=1234@abcd" -p 5099:1433 --name sql
 
 127.0.0.1,5099
 ==================================================
+ discountdb:
+        container_name: discountdb
+        environment:
+          - ACCEPT_EULA=Y
+          - SA_PASSWORD=Admin@1234
+          - MSSQL_PID=Express
+        restart: always
+        ports:
+          - "5430:1433"
+        volumes:
+          - discount_data:/var/lib/mssqlserver/data/
+=================================
